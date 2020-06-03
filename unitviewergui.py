@@ -51,9 +51,7 @@ class Frame_examples_program():
         self.create_buttons(frame3, "D", "E", "F")
 
         # - - - - - - - - - - - - - - - - - - - - -
-        # Quit button in the lower right corner
-        # quit_button = ttk.Button(self.window, text="Quit", command=self.window.destroy)
-        # quit_button.grid(row=3, column=3)
+        
 
 # Create the entire GUI program
 program = Frame_examples_program()
