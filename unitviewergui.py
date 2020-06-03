@@ -49,8 +49,6 @@ class Frame_examples_program():
         frame3 = ttk.LabelFrame(self.window, text="Example label", relief=tk.RIDGE)
         frame3.grid(row=1, column=1, sticky=tk.N + tk.E + tk.S+ tk.W)
         self.create_buttons(frame3, "D", "E", "F")
-
-        # - - - - - - - - - - - - - - - - - - - - -
         
 
 # Create the entire GUI program
