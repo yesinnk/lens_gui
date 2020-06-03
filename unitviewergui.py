@@ -31,7 +31,6 @@ class Frame_examples_program():
         # Create some room around all the internal frames
         self.window['padx'] = 5
         self.window['pady'] = 5
-        # - - - - - - - - - - - - - - - - - - - - -
         # LabelFrame
 
         self.window.grid_columnconfigure(0,weight=1)
