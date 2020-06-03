@@ -20,12 +20,26 @@ class Frame_examples_program():
         return (button1, button2, button3)
 
     def create_labels(self, parent):
-        button1 = ttk.Label(parent, text="do task " )
+        button1 = ttk.Label(parent, text="Example " )
         button1.grid(row=1, column=1)
-        button2 = ttk.Label(parent, text="do task " )
+        button2 = ttk.Label(parent, text="Example " )
         button2.grid(row=1, column=2, pady=10)
-        button3 = ttk.Label(parent, text="do task " )
+        button3 = ttk.Label(parent, text="Example " )
         button3.grid(row=1, column=3)
+
+    def create_nodes(self,parent):
+        buttonborder = tk.Frame(parent, highlightbackground="#37d3ff",
+                             highlightcolor="#37d3ff",
+                             highlightthickness=4,
+                             bd=0)
+
+        photoshop = tk.Button(buttonborder, 
+                            text='Output',
+                            fg='#37d3ff',
+                            bg='#001d26')
+
+        photoshop.grid(row=0,column=0)
+        buttonborder.grid(row=0,column=0,padx=10,pady=10)
 
     def create_widgets(self):
         # Create some room around all the internal frames
@@ -34,7 +48,7 @@ class Frame_examples_program():
         # LabelFrame
 
         self.window.grid_columnconfigure(0,weight=1)
-        self.window.grid_columnconfigure(1,weight=2)
+        self.window.grid_columnconfigure(1,weight=4)
         self.window.grid_rowconfigure(1,weight=1)
 
         eventTimeFrame = ttk.LabelFrame(self.window, text="Event Example Time Label", relief=tk.RIDGE)
@@ -43,11 +57,11 @@ class Frame_examples_program():
 
         frame2 = ttk.LabelFrame(self.window, text="Example label", relief=tk.RIDGE)
         frame2.grid(row=1, column=0, sticky=tk.N + tk.E + tk.S+ tk.W)
-        self.create_buttons(frame2, "D", "E", "F")
+        self.create_buttons(frame2, "1", "2", "3")
 
         frame3 = ttk.LabelFrame(self.window, text="Example label", relief=tk.RIDGE)
         frame3.grid(row=1, column=1, sticky=tk.N + tk.E + tk.S+ tk.W)
-        self.create_buttons(frame3, "D", "E", "F")
+        self.create_nodes(frame3)
         
 
 # Create the entire GUI program
