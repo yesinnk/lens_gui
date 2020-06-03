@@ -27,19 +27,19 @@ class Frame_examples_program():
         button3 = ttk.Label(parent, text="Example " )
         button3.grid(row=1, column=3)
 
-    def create_nodes(self,parent):
-        buttonborder = tk.Frame(parent, highlightbackground="#37d3ff",
-                             highlightcolor="#37d3ff",
+    def create_nodes(self,parent,row,col):
+        buttonborder = tk.Frame(parent, highlightbackground="#05476E",
+                             highlightcolor="#05476E",
                              highlightthickness=4,
                              bd=0)
 
         photoshop = tk.Button(buttonborder, 
-                            text='Output',
-                            fg='#37d3ff',
-                            bg='#001d26')
+                            text='      ',
+                            fg='#05476E',
+                            bg='#F4370F')
 
-        photoshop.grid(row=0,column=0)
-        buttonborder.grid(row=0,column=0,padx=10,pady=10)
+        photoshop.grid(row=row,column=col,sticky=tk.N)
+        buttonborder.grid(row=row,column=col,padx=20,pady=20,sticky=tk.N)
 
     def create_widgets(self):
         # Create some room around all the internal frames
@@ -61,7 +61,11 @@ class Frame_examples_program():
 
         frame3 = ttk.LabelFrame(self.window, text="Example label", relief=tk.RIDGE)
         frame3.grid(row=1, column=1, sticky=tk.N + tk.E + tk.S+ tk.W)
-        self.create_nodes(frame3)
+
+        self.create_nodes(frame3,row=0,col=0)
+        self.create_nodes(frame3,row=0,col=1)
+
+
         
 
 # Create the entire GUI program
