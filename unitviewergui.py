@@ -10,14 +10,6 @@ class Frame_examples_program():
 
         self.create_widgets()
 
-    def create_buttons(self, parent, a, b, c):
-        button1 = ttk.Button(parent, text="do task " + a)
-        button1.grid(row=1, column=1)
-        button2 = ttk.Button(parent, text="do task " + b)
-        button2.grid(row=2, column=1)
-        button3 = ttk.Button(parent, text="do task " + c)
-        button3.grid(row=3, column=1)
-        return (button1, button2, button3)
 
     def create_labels(self, parent):
         button1 = ttk.Label(parent, text="Example " )
@@ -69,6 +61,30 @@ class Frame_examples_program():
         photoshop.grid(row=row,column=col,sticky=tk.N)
         buttonborder.grid(row=row,column=col,padx=20,pady=20,sticky=tk.N)
 
+    
+    def example1(self,frame):
+        self.create_output_nodes(frame,row=0,col=2)
+        self.create_output_nodes(frame,row=0,col=3)
+
+        for i in range(1,5):
+            self.create_hidden_nodes(frame,row=1,col=i)
+
+        for i in range(0,6):
+            self.create_hidden_nodes(frame,row=2,col=i)
+
+        self.create_input_nodes(frame,row=3,col=2)
+        self.create_input_nodes(frame,row=3,col=3)
+
+    def create_buttons(self, parent, a, b, c, frame):
+        button1 = ttk.Button(parent, text="do task " + a, command=example1(frame))
+        button1.grid(row=1, column=1)
+        button2 = ttk.Button(parent, text="do task " + b)
+        button2.grid(row=2, column=1)
+        button3 = ttk.Button(parent, text="do task " + c)
+        button3.grid(row=3, column=1)
+        return (button1, button2, button3)
+
+
     def create_widgets(self):
         # Create some room around all the internal frames
         self.window['padx'] = 5
@@ -83,24 +99,26 @@ class Frame_examples_program():
         eventTimeFrame.grid(row=0,column=0, columnspan=2, sticky=tk.N + tk.E + tk.S+ tk.W)      
         self.create_labels(eventTimeFrame)
 
-        frame2 = ttk.LabelFrame(self.window, text="Example label", relief=tk.RIDGE)
-        frame2.grid(row=1, column=0, sticky=tk.N + tk.E + tk.S+ tk.W)
-        self.create_buttons(frame2, "1", "2", "3")
-
         frame3 = ttk.LabelFrame(self.window, text="Example label", relief=tk.RIDGE)
         frame3.grid(row=1, column=1, sticky=tk.N + tk.E + tk.S+ tk.W)
 
-        self.create_output_nodes(frame3,row=0,col=2)
-        self.create_output_nodes(frame3,row=0,col=3)
+        frame2 = ttk.LabelFrame(self.window, text="Example label", relief=tk.RIDGE)
+        frame2.grid(row=1, column=0, sticky=tk.N + tk.E + tk.S+ tk.W)
+        self.create_buttons(frame2, "1", "2", "3", frame=frame3)
 
-        for i in range(1,5):
-            self.create_hidden_nodes(frame3,row=1,col=i)
+        
 
-        for i in range(0,6):
-            self.create_hidden_nodes(frame3,row=2,col=i)
+        # self.create_output_nodes(frame3,row=0,col=2)
+        # self.create_output_nodes(frame3,row=0,col=3)
 
-        self.create_input_nodes(frame3,row=3,col=2)
-        self.create_input_nodes(frame3,row=3,col=3)
+        # for i in range(1,5):
+        #     self.create_hidden_nodes(frame3,row=1,col=i)
+
+        # for i in range(0,6):
+        #     self.create_hidden_nodes(frame3,row=2,col=i)
+
+        # self.create_input_nodes(frame3,row=3,col=2)
+        # self.create_input_nodes(frame3,row=3,col=3)
         
 
 # Create the entire GUI program
