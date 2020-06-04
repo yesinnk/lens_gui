@@ -95,6 +95,27 @@ class Frame_examples_program():
         self.create_input_nodes(frame,row=3,col=2)
         self.create_input_nodes(frame,row=3,col=3)
 
+    def example3(self,frame):
+        list = frame.grid_slaves()
+        for l in list:
+            l.destroy()
+
+        self.create_output_nodes(frame,row=0,col=3)
+
+        row=1
+        for i in range(1,100):
+            if i%5==0:
+                row+=1
+                self.create_hidden_nodes(frame,row=row,col=i)
+            else:
+                self.create_hidden_nodes(frame,row=row,col=i)
+
+        # for i in range(0,6):
+        #     self.create_hidden_nodes(frame,row=2,col=i)
+
+        # self.create_input_nodes(frame,row=3,col=2)
+        # self.create_input_nodes(frame,row=3,col=3)
+
 
 
     def create_buttons(self, parent, a, b, c, frame):
@@ -102,7 +123,7 @@ class Frame_examples_program():
         button1.grid(row=1, column=1)
         button2 = ttk.Button(parent, text="do task " + b,  command=lambda: self.example2(frame))
         button2.grid(row=2, column=1)
-        button3 = ttk.Button(parent, text="do task " + c)
+        button3 = ttk.Button(parent, text="do task " + c, command=lambda: self.example3(frame))
         button3.grid(row=3, column=1)
         return (button1, button2, button3)
 
@@ -111,12 +132,16 @@ class Frame_examples_program():
         listbox = tk.Listbox(parent)
         listbox.pack(side=tk.LEFT,fill="both",expand=True)
 
-        for item in ["example2","example1"]:
+        for item in ["example1","example2"]:
             listbox.insert(tk.END, item)
 
         x=listbox.get(tk.ACTIVE)
         btn = tk.Button(parent,text="select",command=lambda: self.example1(frame) )
         btn.pack()
+
+    def create_scrollbar(self,parent):
+        sbr=tk.Scrollbar(parent)
+        sbr.grid(column=5,sticky=tk.E)
         
 
     def create_widgets(self):
@@ -141,7 +166,7 @@ class Frame_examples_program():
 
         #self.create_listbox(frame2, frame=frame3)
         self.create_buttons(frame2, "1", "2", "3", frame=frame3)
-
+        #self.create_scrollbar(frame3)
         
 
 # Create the entire GUI program
