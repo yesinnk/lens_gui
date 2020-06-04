@@ -33,6 +33,7 @@ class Frame_examples_program():
         buttonborder.grid(row=row,column=col,padx=20,pady=20,sticky=tk.N)
 
     def create_input_nodes(self,parent,row,col):
+
         buttonborder = tk.Frame(parent, highlightbackground="#F4370F",
                              highlightcolor="#F4370F",
                              highlightthickness=3,
@@ -62,7 +63,10 @@ class Frame_examples_program():
 
     
     def example1(self,frame):
-   
+        list = frame.grid_slaves()
+        for l in list:
+            l.destroy()
+
         self.create_output_nodes(frame,row=0,col=2)
         self.create_output_nodes(frame,row=0,col=3)
 
@@ -76,8 +80,20 @@ class Frame_examples_program():
         self.create_input_nodes(frame,row=3,col=3)
 
     def example2(self,frame):
-   
-        self.create_output_nodes(frame,row=0,col=4)
+        list = frame.grid_slaves()
+        for l in list:
+            l.destroy()
+
+        self.create_output_nodes(frame,row=0,col=3)
+
+        for i in range(1,7):
+            self.create_hidden_nodes(frame,row=1,col=i)
+
+        for i in range(0,6):
+            self.create_hidden_nodes(frame,row=2,col=i)
+
+        self.create_input_nodes(frame,row=3,col=2)
+        self.create_input_nodes(frame,row=3,col=3)
 
 
 
@@ -90,6 +106,18 @@ class Frame_examples_program():
         button3.grid(row=3, column=1)
         return (button1, button2, button3)
 
+    def create_listbox(self,parent,frame):
+
+        listbox = tk.Listbox(parent)
+        listbox.pack(side=tk.LEFT,fill="both",expand=True)
+
+        for item in ["example2","example1"]:
+            listbox.insert(tk.END, item)
+
+        x=listbox.get(tk.ACTIVE)
+        btn = tk.Button(parent,text="select",command=lambda: self.example1(frame) )
+        btn.pack()
+        
 
     def create_widgets(self):
         # Create some room around all the internal frames
@@ -104,27 +132,16 @@ class Frame_examples_program():
         eventTimeFrame.grid(row=0,column=0, columnspan=2, sticky=tk.N + tk.E + tk.S+ tk.W)      
         self.create_labels(eventTimeFrame)
 
+
         frame3 = ttk.LabelFrame(self.window, text="Example label", relief=tk.RIDGE)
         frame3.grid(row=1, column=1, sticky=tk.N + tk.E + tk.S+ tk.W)
 
         frame2 = ttk.LabelFrame(self.window, text="Example label", relief=tk.RIDGE)
         frame2.grid(row=1, column=0, sticky=tk.N + tk.E + tk.S+ tk.W)
 
+        #self.create_listbox(frame2, frame=frame3)
         self.create_buttons(frame2, "1", "2", "3", frame=frame3)
 
-        
-
-        # self.create_output_nodes(frame3,row=0,col=2)
-        # self.create_output_nodes(frame3,row=0,col=3)
-
-        # for i in range(1,5):
-        #     self.create_hidden_nodes(frame3,row=1,col=i)
-
-        # for i in range(0,6):
-        #     self.create_hidden_nodes(frame3,row=2,col=i)
-
-        # self.create_input_nodes(frame3,row=3,col=2)
-        # self.create_input_nodes(frame3,row=3,col=3)
         
 
 # Create the entire GUI program
