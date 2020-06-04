@@ -27,16 +27,44 @@ class Frame_examples_program():
         button3 = ttk.Label(parent, text="Example " )
         button3.grid(row=1, column=3)
 
-    def create_nodes(self,parent,row,col):
+    def create_output_nodes(self,parent,row,col):
         buttonborder = tk.Frame(parent, highlightbackground="#05476E",
                              highlightcolor="#05476E",
-                             highlightthickness=4,
+                             highlightthickness=6,
                              bd=0)
 
         photoshop = tk.Button(buttonborder, 
-                            text='      ',
+                            text='    ',
                             fg='#05476E',
                             bg='#F4370F')
+
+        photoshop.grid(row=row,column=col,sticky=tk.N)
+        buttonborder.grid(row=row,column=col,padx=20,pady=20,sticky=tk.N)
+
+    def create_input_nodes(self,parent,row,col):
+        buttonborder = tk.Frame(parent, highlightbackground="#F4370F",
+                             highlightcolor="#F4370F",
+                             highlightthickness=3,
+                             bd=0)
+
+        photoshop = tk.Button(buttonborder, 
+                            text='    ',
+                            fg='#F4370F',
+                            bg='#F4370F')
+
+        photoshop.grid(row=row,column=col,sticky=tk.N)
+        buttonborder.grid(row=row,column=col,padx=20,pady=20,sticky=tk.N)
+
+    def create_hidden_nodes(self,parent,row,col):
+        buttonborder = tk.Frame(parent, highlightbackground="#05476E",
+                             highlightcolor="#05476E",
+                             highlightthickness=3,
+                             bd=0)
+
+        photoshop = tk.Button(buttonborder, 
+                            text='    ',
+                            fg='#05476E',
+                            bg='#05476E')
 
         photoshop.grid(row=row,column=col,sticky=tk.N)
         buttonborder.grid(row=row,column=col,padx=20,pady=20,sticky=tk.N)
@@ -62,10 +90,17 @@ class Frame_examples_program():
         frame3 = ttk.LabelFrame(self.window, text="Example label", relief=tk.RIDGE)
         frame3.grid(row=1, column=1, sticky=tk.N + tk.E + tk.S+ tk.W)
 
-        self.create_nodes(frame3,row=0,col=0)
-        self.create_nodes(frame3,row=0,col=1)
+        self.create_output_nodes(frame3,row=0,col=2)
+        self.create_output_nodes(frame3,row=0,col=3)
 
+        for i in range(1,5):
+            self.create_hidden_nodes(frame3,row=1,col=i)
 
+        for i in range(0,6):
+            self.create_hidden_nodes(frame3,row=2,col=i)
+
+        self.create_input_nodes(frame3,row=3,col=2)
+        self.create_input_nodes(frame3,row=3,col=3)
         
 
 # Create the entire GUI program
