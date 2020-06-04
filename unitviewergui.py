@@ -7,7 +7,6 @@ class Frame_examples_program():
         self.window = tk.Tk()
         self.window.title("tk Grouping Examples")
         self.window.geometry("700x400")
-
         self.create_widgets()
 
 
@@ -63,6 +62,7 @@ class Frame_examples_program():
 
     
     def example1(self,frame):
+   
         self.create_output_nodes(frame,row=0,col=2)
         self.create_output_nodes(frame,row=0,col=3)
 
@@ -75,10 +75,16 @@ class Frame_examples_program():
         self.create_input_nodes(frame,row=3,col=2)
         self.create_input_nodes(frame,row=3,col=3)
 
+    def example2(self,frame):
+   
+        self.create_output_nodes(frame,row=0,col=4)
+
+
+
     def create_buttons(self, parent, a, b, c, frame):
-        button1 = ttk.Button(parent, text="do task " + a, command=example1(frame))
+        button1 = ttk.Button(parent, text="do task " + a, command=lambda: self.example1(frame))
         button1.grid(row=1, column=1)
-        button2 = ttk.Button(parent, text="do task " + b)
+        button2 = ttk.Button(parent, text="do task " + b,  command=lambda: self.example2(frame))
         button2.grid(row=2, column=1)
         button3 = ttk.Button(parent, text="do task " + c)
         button3.grid(row=3, column=1)
@@ -89,7 +95,6 @@ class Frame_examples_program():
         # Create some room around all the internal frames
         self.window['padx'] = 5
         self.window['pady'] = 5
-        # LabelFrame
 
         self.window.grid_columnconfigure(0,weight=1)
         self.window.grid_columnconfigure(1,weight=4)
@@ -104,6 +109,7 @@ class Frame_examples_program():
 
         frame2 = ttk.LabelFrame(self.window, text="Example label", relief=tk.RIDGE)
         frame2.grid(row=1, column=0, sticky=tk.N + tk.E + tk.S+ tk.W)
+
         self.create_buttons(frame2, "1", "2", "3", frame=frame3)
 
         
