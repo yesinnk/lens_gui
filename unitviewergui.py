@@ -104,17 +104,17 @@ class Frame_examples_program():
 
         row=1
         for i in range(1,100):
-            if i%5==0:
+            if i>5:
                 row+=1
                 self.create_hidden_nodes(frame,row=row,col=i)
             else:
                 self.create_hidden_nodes(frame,row=row,col=i)
 
-        # for i in range(0,6):
-        #     self.create_hidden_nodes(frame,row=2,col=i)
+        for i in range(0,6):
+            self.create_hidden_nodes(frame,row=2,col=i)
 
-        # self.create_input_nodes(frame,row=3,col=2)
-        # self.create_input_nodes(frame,row=3,col=3)
+        self.create_input_nodes(frame,row=3,col=2)
+        self.create_input_nodes(frame,row=3,col=3)
 
 
 
