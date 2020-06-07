@@ -9,6 +9,29 @@ class Frame_examples_program():
         self.window.geometry("700x400")
         self.create_widgets()
 
+    def loop_tk(kernel):
+        """Start a kernel with the Tk event loop."""
+        from tkinter import Tk
+
+        # Tk uses milliseconds
+        poll_interval = int(1000*kernel._poll_interval)
+        # For Tkinter, we create a Tk object and call its withdraw method.
+        class Timer(object):
+            def __init__(self, func):
+                self.app = Tk()
+                self.app.withdraw()
+                self.func = func
+
+            def on_timer(self):
+                self.func()
+                self.app.after(poll_interval, self.on_timer)
+
+            def start(self):
+                self.on_timer()  # Call it once to get things going.
+                self.app.mainloop()
+
+        kernel.timer = Timer(kernel.do_one_iteration)
+        kernel.timer.start()
 
     def create_labels(self, parent):
         button1 = ttk.Label(parent, text="Example " )
